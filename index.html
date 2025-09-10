@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motel LambMiBolas - Conforto e Elegância</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Updated to premium Google Fonts for luxury aesthetic -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>LambMiBolas</h1>
+                <p>Motel de Luxo</p>
+            </div>
+            <nav class="nav">
+                <a href="#home">Início</a>
+                <a href="#quartos">Quartos</a>
+                <a href="#reserva">Reservar</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Experiência Única em Conforto</h2>
+            <p>Desfrute de momentos especiais em nossos quartos luxuosos</p>
+            <button class="cta-button" onclick="scrollToReserva()">
+                <i class="fas fa-calendar-check"></i>
+                Fazer Reserva
+            </button>
+        </div>
+        <div class="hero-image">
+            <img src="quarto1.jpg" alt="Motel LambMiBolas">
+        </div>
+    </section>
+
+    <!-- Quartos Section -->
+    <section id="quartos" class="quartos-section">
+        <div class="container">
+            <h2 class="section-title">Nossos Quartos</h2>
+            <div class="quartos-grid">
+                <div class="quarto-card" data-quarto="standard-1" data-preco="80">
+                    <div class="quarto-image">
+                        <img src="quarto1.jpg" alt="Quarto Standard 1">
+                    </div>
+                    <div class="quarto-info">
+                        <h3>Quarto Standard 1</h3>
+                        <p class="preco">R$ 100,00/hora</p>
+                        <ul class="comodidades">
+                            <li><i class="fas fa-bed"></i> Cama casal</li>
+                            <li><i class="fas fa-tv"></i> TV 42"</li>
+                            <li><i class="fas fa-snowflake"></i> Ar condicionado</li>
+                            <li><i class="fas fa-shower"></i> Banheiro privativo</li>
+                        </ul>
+                        <button class="selecionar-quarto" onclick="selecionarQuarto('standard-1', 80)">
+                            Selecionar Quarto
+                        </button>
+                    </div>
+                </div>
+
+                <div class="quarto-card" data-quarto="standard-2" data-preco="80">
+                    <div class="quarto-image">
+                        <img src="quarto2.jpg" alt="Quarto Standard 2">
+                    </div>
+                    <div class="quarto-info">
+                        <h3>Quarto Standard 2</h3>
+                        <p class="preco">R$ 80,00/hora</p>
+                        <ul class="comodidades">
+                            <li><i class="fas fa-bed"></i> Cama casal</li>
+                            <li><i class="fas fa-tv"></i> TV 42"</li>
+                            <li><i class="fas fa-snowflake"></i> Ar condicionado</li>
+                            <li><i class="fas fa-shower"></i> Banheiro privativo</li>
+                        </ul>
+                        <button class="selecionar-quarto" onclick="selecionarQuarto('standard-2', 80)">
+                            Selecionar Quarto
+                        </button>
+                    </div>
+                </div>
+
+                <div class="quarto-card" data-quarto="standard-3" data-preco="90">
+                    <div class="quarto-image">
+                        <img src="quarto3.jpg" alt="Quarto Standard 3">
+                    </div>
+                    <div class="quarto-info">
+                        <h3>Quarto Standard 3</h3>
+                        <p class="preco">R$ 90,00/hora</p>
+                        <ul class="comodidades">
+                            <li><i class="fas fa-bed"></i> Cama casal</li>
+                            <li><i class="fas fa-tv"></i> TV 50"</li>
+                            <li><i class="fas fa-snowflake"></i> Ar condicionado</li>
+                            <li><i class="fas fa-hot-tub"></i> Hidromassagem</li>
+                        </ul>
+                        <button class="selecionar-quarto" onclick="selecionarQuarto('standard-3', 90)">
+                            Selecionar Quarto
+                        </button>
+                    </div>
+                </div>
+
+                <div class="quarto-card" data-quarto="standard-4" data-preco="90">
+                    <div class="quarto-image">
+                        <img src="quarto4.jpg" alt="Quarto Standard 4">
+                    </div>
+                    <div class="quarto-info">
+                        <h3>Quarto Standard 4</h3>
+                        <p class="preco">R$ 90,00/hora</p>
+                        <ul class="comodidades">
+                            <li><i class="fas fa-bed"></i> Cama casal</li>
+                            <li><i class="fas fa-tv"></i> TV 50"</li>
+                            <li><i class="fas fa-snowflake"></i> Ar condicionado</li>
+                            <li><i class="fas fa-hot-tub"></i> Hidromassagem</li>
+                        </ul>
+                        <button class="selecionar-quarto" onclick="selecionarQuarto('standard-4', 90)">
+                            Selecionar Quarto
+                        </button>
+                    </div>
+                </div>
+
+                <div class="quarto-card suite" data-quarto="suite-1" data-preco="150">
+                    <div class="quarto-image">
+                        <img src="suite1.jpg" alt="Suíte Premium 1">
+                        <div class="suite-badge">SUÍTE</div>
+                    </div>
+                    <div class="quarto-info">
+                        <h3>Suíte Premium 1</h3>
+                        <p class="preco">R$ 150,00/hora</p>
+                        <ul class="comodidades">
+                            <li><i class="fas fa-bed"></i> Cama king size</li>
+                            <li><i class="fas fa-tv"></i> TV 65"</li>
+                            <li><i class="fas fa-couch"></i> Sala de estar</li>
+                            <li><i class="fas fa-hot-tub"></i> Spa privativo</li>
+                        </ul>
+                        <button class="selecionar-quarto" onclick="selecionarQuarto('suite-1', 150)">
+                            Selecionar Suíte
+                        </button>
+                    </div>
+                </div>
+
+                <div class="quarto-card suite" data-quarto="suite-2" data-preco="180">
+                    <div class="quarto-image">
+                        <img src="suite2.jpg" alt="Suíte Premium 2">
+                        <div class="suite-badge">SUÍTE VIP</div>
+                    </div>
+                    <div class="quarto-info">
+                        <h3>Suíte Premium 2</h3>
+                        <p class="preco">R$ 180,00/hora</p>
+                        <ul class="comodidades">
+                            <li><i class="fas fa-bed"></i> Cama king size</li>
+                            <li><i class="fas fa-tv"></i> TV 75"</li>
+                            <li><i class="fas fa-couch"></i> Sala VIP</li>
+                            <li><i class="fas fa-glass-cheers"></i> Bar privativo</li>
+                        </ul>
+                        <button class="selecionar-quarto" onclick="selecionarQuarto('suite-2', 180)">
+                            Selecionar Suíte VIP
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reserva Section -->
+    <section id="reserva" class="reserva-section">
+        <div class="container">
+            <h2 class="section-title">Fazer Reserva</h2>
+            <div class="reserva-container">
+                <form id="reservaForm" class="reserva-form">
+                    <div class="form-group">
+                        <label for="nomeCliente">Nome Completo</label>
+                        <input type="text" id="nomeCliente" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="placaCarro">Placa do Veículo</label>
+                        <input type="text" id="placaCarro" placeholder="ABC-1234" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quartoSelecionado">Quarto</label>
+                        <select id="quartoSelecionado" required>
+                            <option value="">Selecione um quarto</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dataReserva">Data</label>
+                            <input type="date" id="dataReserva" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="horaEntrada">Hora de Entrada</label>
+                            <input type="time" id="horaEntrada" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="horas">Quantidade de Horas</label>
+                            <select id="horas" required>
+                                <option value="">Selecione</option>
+                                <option value="2">2 horas</option>
+                                <option value="3">3 horas</option>
+                                <option value="4">4 horas</option>
+                                <option value="6">6 horas</option>
+                                <option value="12">12 horas (pernoite)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="valor-total">
+                        <h3>Valor Total: R$ <span id="valorTotal">0,00</span></h3>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-check"></i>
+                        Confirmar Reserva
+                    </button>
+                </form>
+                
+                <div class="reserva-info">
+                    <h3>Informações Importantes</h3>
+                    <ul>
+                        <li><i class="fas fa-clock"></i> Check-in: A partir das 14h</li>
+                        <li><i class="fas fa-car"></i> Estacionamento privativo</li>
+                        <li><i class="fas fa-wifi"></i> Wi-Fi gratuito</li>
+                        <li><i class="fas fa-shield-alt"></i> Ambiente seguro e discreto</li>
+                        <li><i class="fas fa-credit-card"></i> Pagamento no local</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="contato-section">
+        <div class="container">
+            <h2 class="section-title">Contato</h2>
+            <div class="contato-info">
+                <div class="contato-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Telefone</h4>
+                        <p>(42) 9986-0424</p>
+                    </div>
+                </div>
+                <div class="contato-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Endereço</h4>
+                        <p>Rua das Flores, 123 - Centro</p>
+                    </div>
+                </div>
+                <div class="contato-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>Funcionamento</h4>
+                        <p>24 horas por dia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Button -->
+    <div class="admin-access">
+        <button id="adminButton" class="admin-button">
+            <i class="fas fa-cog"></i>
+            Área Administrativa
+        </button>
+    </div>
+
+    <!-- Admin Modal -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Área Administrativa</h2>
+                <span class="close">&times;</span>
+            </div>
+            
+            <div class="admin-tabs">
+                <button class="tab-button active" onclick="showTab('reservas')">Reservas Ativas</button>
+                <button class="tab-button" onclick="showTab('relatorio')">Relatório Mensal</button>
+            </div>
+            
+            <div id="reservas" class="tab-content active">
+                <h3>Reservas Ativas</h3>
+                <div id="reservasAtivas" class="reservas-list">
+                    <!-- Reservas serão carregadas dinamicamente -->
+                </div>
+            </div>
+            
+            <div id="relatorio" class="tab-content">
+                <h3>Relatório Mensal</h3>
+                <div class="relatorio-filters">
+                    <select id="mesRelatorio">
+                        <option value="">Selecione o mês</option>
+                    </select>
+                    <button onclick="gerarRelatorio()">Gerar Relatório</button>
+                </div>
+                <div id="relatorioContent" class="relatorio-content">
+                    <!-- Relatório será gerado dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Processando reserva...</p>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
