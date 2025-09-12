@@ -1,4 +1,7 @@
-// Configuração do Firebase
+import { initializeApp } from "firebase/app"
+import { getFirestore } from "firebase/firestore"
+import { getAnalytics } from "firebase/analytics"
+
 const firebaseConfig = {
   apiKey: "AIzaSyBWLFEq3F8b0fZX4llE1_IvFOydQfw8mYE",
   authDomain: "sitemotel-e0cce.firebaseapp.com",
@@ -6,32 +9,53 @@ const firebaseConfig = {
   storageBucket: "sitemotel-e0cce.firebasestorage.app",
   messagingSenderId: "211787809269",
   appId: "1:211787809269:web:69395a4a7ab8bef476e0bc",
-  measurementId: "G-KMBKJRMN9B"
-};
+  measurementId: "G-KMBKJRMN9B",
+}
 
-// Inicializar Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+try {
+  // Inicializar Firebase
+  const app = initializeApp(firebaseConfig)
+  const db = getFirestore(app)
 
-// Configurações do WhatsApp
-const WHATSAPP_NUMBER = "5511999999999"; // Substitua pelo seu número
+  // Tentar inicializar Analytics apenas se disponível
+  let analytics = null
+  try {
+    analytics = getAnalytics(app)
+  } catch (analyticsError) {
+    console.log("[v0] Analytics não disponível no ambiente atual")
+  }
 
-// Função para enviar mensagem no WhatsApp
-function enviarWhatsApp(dados) {
-    const mensagem = `
-🏨 *Nova Reserva - Motel LambMiBolas*
+  // Exportar para uso global
+  window.db = db
+  window.firebase = {
+    firestore: {
+      FieldValue: {
+        serverTimestamp: () => new Date(),
+      },
+    },
+  }
 
-👤 *Cliente:* ${dados.nome}
-🚗 *Placa:* ${dados.placa}
-🏠 *Quarto:* ${dados.quarto}
-📅 *Data:* ${dados.data}
-⏰ *Entrada:* ${dados.horaEntrada}
-⏱️ *Duração:* ${dados.horas} horas
-💰 *Valor:* R$ ${dados.valor}
+  console.log("[v0] Firebase v9+ configurado com sucesso")
 
-_Reserva confirmada com sucesso!_
-    `.trim();
-    
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensagem)}`;
-    window.open(url, '_blank');
+  // Mostrar status de conexão
+  const statusElement = document.createElement("div")
+  statusElement.className = "firebase-status show"
+  statusElement.textContent = "✅ Firebase conectado"
+  document.body.appendChild(statusElement)
+
+  setTimeout(() => {
+    statusElement.remove()
+  }, 3000)
+} catch (error) {
+  console.error("[v0] Erro ao configurar Firebase:", error)
+
+  // Mostrar erro de conexão
+  const statusElement = document.createElement("div")
+  statusElement.className = "firebase-status error show"
+  statusElement.textContent = "❌ Erro no Firebase"
+  document.body.appendChild(statusElement)
+
+  setTimeout(() => {
+    statusElement.remove()
+  }, 5000)
 }

@@ -52,7 +52,7 @@
                     </div>
                     <div class="quarto-info">
                         <h3>Quarto Standard 1</h3>
-                        <p class="preco">R$ 100,00/hora</p>
+                        <p class="preco">R$ 80,00/hora</p>
                         <ul class="comodidades">
                             <li><i class="fas fa-bed"></i> Cama casal</li>
                             <li><i class="fas fa-tv"></i> TV 42"</li>
@@ -266,6 +266,38 @@
         </div>
     </section>
 
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" class="admin-login-modal">
+        <div class="admin-login-content">
+            <div class="admin-login-header">
+                <div class="admin-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2>Acesso Administrativo</h2>
+                <p>Digite sua senha para acessar o painel</p>
+            </div>
+            
+            <form id="adminLoginForm" class="admin-login-form">
+                <div class="password-input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="adminPassword" placeholder="Senha de administrador" required>
+                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">
+                        <i class="fas fa-eye" id="passwordToggleIcon"></i>
+                    </button>
+                </div>
+                
+                <button type="submit" class="admin-login-button">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Entrar no Painel
+                </button>
+            </form>
+            
+            <button class="close-login" onclick="closeAdminLogin()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Admin Button -->
     <div class="admin-access">
         <button id="adminButton" class="admin-button">
@@ -285,6 +317,7 @@
             <div class="admin-tabs">
                 <button class="tab-button active" onclick="showTab('reservas')">Reservas Ativas</button>
                 <button class="tab-button" onclick="showTab('relatorio')">Relatório Mensal</button>
+                <button class="tab-button" onclick="showTab('relatorio-anual')">Relatório Anual</button>
             </div>
             
             <div id="reservas" class="tab-content active">
@@ -306,6 +339,19 @@
                     <!-- Relatório será gerado dinamicamente -->
                 </div>
             </div>
+            
+            <div id="relatorio-anual" class="tab-content">
+                <h3>Relatório Anual</h3>
+                <div class="relatorio-filters">
+                    <select id="anoRelatorio">
+                        <option value="">Selecione o ano</option>
+                    </select>
+                    <button onclick="gerarRelatorioAnual()">Gerar Relatório Anual</button>
+                </div>
+                <div id="relatorioAnualContent" class="relatorio-content">
+                    <!-- Relatório anual será gerado dinamicamente -->
+                </div>
+            </div>
         </div>
     </div>
 
@@ -316,10 +362,7 @@
     </div>
 
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
-    
-    <script src="firebase-config.js"></script>
+    <script type="module" src="firebase-config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

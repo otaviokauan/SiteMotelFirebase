@@ -31,6 +31,30 @@
   --border-radius: 12px;
   --border-radius-large: 20px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Professional color palette for administrative area */
+  --admin-primary: #164e63; /* cyan-800 */
+  --admin-primary-light: #0891b2; /* cyan-600 */
+  --admin-secondary: #ec4899; /* pink-500 */
+  --admin-background: #ffffff;
+  --admin-foreground: #475569; /* slate-600 */
+  --admin-card: #ecfeff; /* cyan-50 */
+  --admin-card-foreground: #164e63;
+  --admin-muted: #fdf2f8; /* pink-50 */
+  --admin-border: #e5e7eb; /* gray-200 */
+  --admin-input: #f9fafb; /* gray-50 */
+  --admin-destructive: #be123c; /* rose-700 */
+  --admin-success: #10b981; /* emerald-500 */
+
+  /* Enhanced shadows and effects */
+  --admin-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --admin-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --admin-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --admin-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+  /* Typography */
+  --admin-font-heading: "Playfair Display", serif;
+  --admin-font-body: "Inter", sans-serif;
 }
 
 body {
@@ -662,7 +686,7 @@ body {
   font-weight: 500;
 }
 
-/* Sophisticated admin button with premium styling */
+/* Redesenhando área administrativa com design profissional e elegante */
 .admin-access {
   position: fixed;
   bottom: 2rem;
@@ -671,27 +695,34 @@ body {
 }
 
 .admin-button {
-  background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-dark) 100%);
-  color: var(--neutral-white);
+  background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-primary-light) 100%);
+  color: var(--admin-background);
   border: none;
   padding: 1rem 1.5rem;
   border-radius: 50px;
+  font-family: var(--admin-font-body);
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
+  box-shadow: var(--admin-shadow-lg);
   font-size: 0.95rem;
+  backdrop-filter: blur(10px);
 }
 
 .admin-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(220, 38, 38, 0.5);
+  box-shadow: var(--admin-shadow-xl);
+  background: linear-gradient(135deg, var(--admin-primary-light) 0%, var(--admin-secondary) 100%);
 }
 
-/* Premium modal design */
+.admin-button:active {
+  transform: translateY(-1px);
+}
+
+/* Premium modal design with glassmorphism */
 .modal {
   display: none;
   position: fixed;
@@ -700,79 +731,494 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(15px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .modal-content {
-  background: var(--neutral-white);
+  background: var(--admin-background);
   margin: 2% auto;
   padding: 0;
-  border-radius: var(--border-radius-large);
+  border-radius: 20px;
   width: 90%;
-  max-width: 1000px;
+  max-width: 1200px;
   max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 60px var(--shadow-heavy);
+  overflow: hidden;
+  box-shadow: var(--admin-shadow-xl);
+  border: 1px solid var(--admin-border);
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
-  border-bottom: 1px solid var(--border-light);
-  background: var(--neutral-cream);
+  padding: 2rem 2.5rem;
+  background: linear-gradient(135deg, var(--admin-card) 0%, var(--admin-background) 100%);
+  border-bottom: 1px solid var(--admin-border);
 }
 
 .modal-header h2 {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
-  color: var(--text-dark);
+  font-family: var(--admin-font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--admin-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.modal-header h2::before {
+  content: "🏨";
+  font-size: 1.5rem;
 }
 
 .close {
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 600;
   cursor: pointer;
-  color: var(--text-medium);
-  transition: var(--transition);
+  color: var(--admin-foreground);
+  transition: all 0.2s ease;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
 }
 
 .close:hover {
-  color: var(--primary-red);
+  color: var(--admin-destructive);
+  background: rgba(190, 18, 60, 0.1);
 }
 
+/* Enhanced tab design */
 .admin-tabs {
   display: flex;
-  background: var(--neutral-light);
-  border-bottom: 1px solid var(--border-light);
+  background: var(--admin-muted);
+  border-bottom: 1px solid var(--admin-border);
+  overflow-x: auto;
 }
 
 .tab-button {
   flex: 1;
-  padding: 1rem 2rem;
+  padding: 1.25rem 2rem;
   border: none;
   background: transparent;
   cursor: pointer;
+  font-family: var(--admin-font-body);
   font-weight: 600;
-  transition: var(--transition);
-  color: var(--text-medium);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  color: var(--admin-foreground);
+  position: relative;
+  white-space: nowrap;
+}
+
+.tab-button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--admin-secondary);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.tab-button:hover {
+  background: rgba(22, 78, 99, 0.05);
+  color: var(--admin-primary);
 }
 
 .tab-button.active {
-  background: var(--neutral-white);
-  color: var(--primary-red);
-  border-bottom: 3px solid var(--primary-red);
+  background: var(--admin-background);
+  color: var(--admin-primary);
+}
+
+.tab-button.active::after {
+  width: 100%;
 }
 
 .tab-content {
   display: none;
-  padding: 2rem;
+  padding: 2.5rem;
+  overflow-y: auto;
+  max-height: calc(90vh - 200px);
 }
 
 .tab-content.active {
   display: block;
+}
+
+.tab-content h3 {
+  font-family: var(--admin-font-heading);
+  font-size: 1.5rem;
+  color: var(--admin-primary);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Enhanced filters and controls */
+.relatorio-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.relatorio-filters select {
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--admin-border);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: var(--admin-font-body);
+  background: var(--admin-input);
+  color: var(--admin-foreground);
+  min-width: 200px;
+  transition: all 0.2s ease;
+}
+
+.relatorio-filters select:focus {
+  outline: none;
+  border-color: var(--admin-primary);
+  box-shadow: 0 0 0 3px rgba(22, 78, 99, 0.1);
+}
+
+.relatorio-filters button {
+  background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-primary-light) 100%);
+  color: var(--admin-background);
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  font-family: var(--admin-font-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.relatorio-filters button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--admin-shadow-lg);
+  background: linear-gradient(135deg, var(--admin-primary-light) 0%, var(--admin-secondary) 100%);
+}
+
+.relatorio-filters button::before {
+  content: "📊";
+  font-size: 1rem;
+}
+
+/* Enhanced reservations list */
+.reservas-list {
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.reserva-item {
+  background: var(--admin-card);
+  padding: 1.75rem;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  border: 1px solid var(--admin-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.reserva-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-secondary) 100%);
+}
+
+.reserva-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--admin-shadow-lg);
+  border-color: var(--admin-primary);
+}
+
+.reserva-info h4 {
+  font-family: var(--admin-font-heading);
+  font-size: 1.25rem;
+  color: var(--admin-primary);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reserva-info h4::before {
+  content: "👤";
+  font-size: 1rem;
+}
+
+.reserva-info p {
+  margin: 0.5rem 0;
+  color: var(--admin-foreground);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.reserva-info p strong {
+  color: var(--admin-primary);
+  font-weight: 600;
+}
+
+.checkout-button {
+  background: linear-gradient(135deg, var(--admin-destructive) 0%, #dc2626 100%);
+  color: var(--admin-background);
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--admin-font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.checkout-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(190, 18, 60, 0.3);
+}
+
+/* Enhanced reports styling */
+.relatorio-content {
+  min-height: 300px;
+}
+
+.relatorio-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.summary-card {
+  background: linear-gradient(135deg, var(--admin-background) 0%, var(--admin-card) 100%);
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid var(--admin-border);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.summary-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-secondary) 100%);
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--admin-shadow-lg);
+  border-color: var(--admin-primary);
+}
+
+.summary-card h4 {
+  font-family: var(--admin-font-body);
+  font-size: 0.9rem;
+  color: var(--admin-foreground);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.summary-number {
+  font-family: var(--admin-font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--admin-primary);
+  margin: 0;
+  line-height: 1;
+}
+
+.relatorio-details {
+  margin-top: 3rem;
+}
+
+.relatorio-details h4 {
+  font-family: var(--admin-font-heading);
+  font-size: 1.5rem;
+  color: var(--admin-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--admin-border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quartos-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.quarto-stat {
+  background: var(--admin-background);
+  padding: 1.75rem;
+  border-radius: 16px;
+  border: 1px solid var(--admin-border);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.quarto-stat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, var(--admin-success) 0%, var(--admin-primary) 100%);
+  border-radius: 0 4px 4px 0;
+}
+
+.quarto-stat:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--admin-shadow-md);
+  border-color: var(--admin-primary);
+}
+
+.quarto-stat h5 {
+  font-family: var(--admin-font-heading);
+  font-size: 1.2rem;
+  color: var(--admin-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quarto-stat h5::before {
+  content: "🛏️";
+  font-size: 1rem;
+}
+
+.quarto-stat p {
+  margin: 0.75rem 0;
+  color: var(--admin-foreground);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.meses-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.mes-stat {
+  background: var(--admin-background);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--admin-border);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.mes-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--admin-shadow-md);
+  border-color: var(--admin-secondary);
+}
+
+.mes-stat h5 {
+  font-family: var(--admin-font-heading);
+  font-size: 1.1rem;
+  color: var(--admin-primary);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.mes-stat p {
+  margin: 0.5rem 0;
+  color: var(--admin-foreground);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.no-data,
+.error {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--admin-foreground);
+  font-family: var(--admin-font-body);
+  font-size: 1.1rem;
+  border-radius: 16px;
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+}
+
+.error {
+  color: var(--admin-destructive);
+  background: rgba(190, 18, 60, 0.05);
+  border-color: rgba(190, 18, 60, 0.2);
+}
+
+.no-data::before {
+  content: "📋";
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.error::before {
+  content: "⚠️";
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
 /* Enhanced loading overlay */
@@ -792,13 +1238,13 @@ body {
 }
 
 .loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid var(--border-light);
-  border-top: 4px solid var(--primary-red);
+  width: 60px;
+  height: 60px;
+  border: 4px solid var(--admin-border);
+  border-top: 4px solid var(--admin-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 @keyframes spin {
@@ -811,9 +1257,10 @@ body {
 }
 
 .loading-overlay p {
-  font-size: 1.1rem;
-  color: var(--text-dark);
-  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--admin-primary);
+  font-family: var(--admin-font-body);
+  font-weight: 600;
 }
 
 /* Responsive design improvements */
@@ -869,11 +1316,72 @@ body {
 
   .modal-content {
     width: 95%;
-    margin: 5% auto;
+    margin: 1% auto;
+    border-radius: 16px;
+  }
+
+  .modal-header {
+    padding: 1.5rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.5rem;
   }
 
   .admin-tabs {
     flex-direction: column;
+  }
+
+  .tab-button {
+    padding: 1rem;
+    text-align: left;
+  }
+
+  .tab-content {
+    padding: 1.5rem;
+  }
+
+  .relatorio-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .relatorio-filters select {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .reserva-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .checkout-button {
+    align-self: center;
+  }
+
+  .relatorio-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .quartos-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .meses-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-access {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .admin-button {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -892,5 +1400,314 @@ body {
 
   .reserva-info {
     padding: 1.5rem;
+  }
+
+  .meses-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card {
+    padding: 1.5rem;
+  }
+
+  .summary-number {
+    font-size: 2rem;
+  }
+
+  .quarto-stat {
+    padding: 1.25rem;
+  }
+}
+
+/* Adicionando estilos elegantes para o modal de login administrativo */
+.admin-login-modal {
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.admin-login-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(236, 254, 255, 0.9) 100%);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(22, 78, 99, 0.2);
+  border-radius: 24px;
+  padding: 3rem;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  position: relative;
+  animation: slideUpScale 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUpScale {
+  from {
+    transform: translateY(50px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.admin-login-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.admin-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-primary-light) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 10px 30px rgba(22, 78, 99, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 10px 30px rgba(22, 78, 99, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(22, 78, 99, 0.4);
+  }
+}
+
+.admin-icon i {
+  font-size: 2rem;
+  color: var(--admin-background);
+}
+
+.admin-login-header h2 {
+  font-family: var(--admin-font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--admin-primary);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.admin-login-header p {
+  color: var(--admin-foreground);
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.admin-login-form {
+  margin-bottom: 1.5rem;
+}
+
+.password-input-group {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.password-input-group i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--admin-primary);
+  font-size: 1.1rem;
+  z-index: 1;
+}
+
+.password-input-group input {
+  width: 100%;
+  padding: 1.25rem 1rem 1.25rem 3rem;
+  border: 2px solid rgba(22, 78, 99, 0.2);
+  border-radius: 16px;
+  font-size: 1rem;
+  font-family: var(--admin-font-body);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  color: var(--admin-primary);
+  font-weight: 500;
+}
+
+.password-input-group input:focus {
+  outline: none;
+  border-color: var(--admin-primary);
+  box-shadow: 0 0 0 4px rgba(22, 78, 99, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.password-input-group input::placeholder {
+  color: rgba(71, 85, 105, 0.6);
+  font-weight: 400;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--admin-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.toggle-password:hover {
+  opacity: 1;
+  background: rgba(22, 78, 99, 0.1);
+}
+
+.admin-login-button {
+  width: 100%;
+  background: linear-gradient(135deg, var(--admin-primary) 0%, var(--admin-primary-light) 100%);
+  color: var(--admin-background);
+  border: none;
+  padding: 1.25rem 2rem;
+  border-radius: 16px;
+  font-family: var(--admin-font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: 0 8px 25px rgba(22, 78, 99, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-login-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all 0.6s ease;
+}
+
+.admin-login-button:hover::before {
+  left: 100%;
+}
+
+.admin-login-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(22, 78, 99, 0.4);
+  background: linear-gradient(135deg, var(--admin-primary-light) 0%, var(--admin-secondary) 100%);
+}
+
+.admin-login-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(22, 78, 99, 0.3);
+}
+
+.close-login {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(71, 85, 105, 0.1);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--admin-foreground);
+}
+
+.close-login:hover {
+  background: rgba(190, 18, 60, 0.1);
+  color: var(--admin-destructive);
+  transform: rotate(90deg);
+}
+
+.close-login i {
+  font-size: 1.2rem;
+}
+
+/* Animação de erro para senha incorreta */
+@keyframes errorShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.error-shake {
+  animation: errorShake 0.6s ease-in-out;
+  border-color: var(--admin-destructive) !important;
+  box-shadow: 0 0 0 4px rgba(190, 18, 60, 0.1) !important;
+}
+
+/* Corrigindo configuração do Firebase para usar módulos ES6 */
+.firebase-status {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  background: rgba(16, 185, 129, 0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  display: none;
+}
+
+.firebase-status.error {
+  background: rgba(239, 68, 68, 0.9);
+}
+
+.firebase-status.show {
+  display: block;
+  animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
